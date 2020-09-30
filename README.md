@@ -2,6 +2,19 @@ https://github.com/jaabberwocky/dataeng_test
 
 ### q1: data pipeline
 
+to setup crontab: 
+
+```bash
+crontab -e
+```
+
+```bash
+* * * * * /usr/bin/python /path/to/process.py >> $HOME/`date +\%Y\%m\%d\%H\%M\%S`-cron.log 2>&1
+```
+
+edit crontab as above and the script will run on 1am every day with output log file yyyyMMddHHMMSS-cron.log generated
+
+
 ### q2: postgres db
 
 ```bash
