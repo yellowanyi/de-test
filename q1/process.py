@@ -1,5 +1,4 @@
 import csv
-import datetime
 import logging
 import os
 import sys
@@ -22,6 +21,7 @@ def process(filename):
     with open(output_filename, "w") as f:
         writer = csv.writer(f, delimiter=",")
         writer.writerow(["first_name", "last_name", "price", "above_100"])  # headers
+        skipped = 0
         for i, (name, price) in enumerate(content):
             if name.strip():  # filter empty names
                 name_list = name.strip().split(" ")
@@ -34,10 +34,12 @@ def process(filename):
                         [first, last, price.lstrip("0"), "true" if float(price.lstrip("0")) > 100 else None])
                 except:
                     logging.error(f"Error on row {i + 1}: {','.join([name, price])}")
+                    skipped += 1
             else:
                 logging.info(f"Empty name on row {i + 1}: {','.join([name, price])}")
+                skipped += 1
 
-    logging.info("processing finished at " + str(datetime.datetime.now()))
+    logging.info(f"processing finished for {filename}" + (f" with {skipped} rows skipped" if skipped > 0 else ""))
 
 
 if __name__ == "__main__":
