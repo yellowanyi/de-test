@@ -31,7 +31,7 @@ ERD: https://dbdiagram.io/d/5f74b9073a78976d7b75ded8
 
 ### q3: architecture design
 
-<img src="https://embed.creately.com/RtRAyE9OoAP?token=IW2eAbBSMAvxnEft&type=svg">
+![img](./q3/architecture.png)
 
 A kinesis data stream is setup to collect data from two sources. 
 - One source is from the web app where client can upload pictures. 
