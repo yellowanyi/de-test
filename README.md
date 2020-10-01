@@ -47,4 +47,8 @@ and save the processed data to a s3 bucket with a lifecycle policy set up to del
 - Another Lambda consumer will push key statistics to Redshift which can
 connect to QuickSight to build real-time dashboards.
 
-
+Assumptions:
+- Since Lambda has a payload limit of 6MB for synchronous invocations, we assume the payload size to be smaller than 6MB. 
+and for larger images that result in payload size larger than 6MB, compression will be performed at the web backend to reduce the payload to less than 6MB.
+- Assume data input rate is consistent and will not have sustained rise 
+such that the number of shards defined within the kinesis stream becomes insufficient which can lead to data loss.
